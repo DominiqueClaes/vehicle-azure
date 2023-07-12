@@ -1,0 +1,9 @@
+FROM registry.access.redhat.com/ubi8/openjdk-17:1.15
+WORKDIR /work/
+COPY target/quarkus-app/lib /work/lib
+COPY target/quarkus-app/*.jar /work
+COPY target/quarkus-app/app /work/app
+COPY target/quarkus-app/quarkus /work/quarkus
+RUN chmod 775 /work
+EXPOSE 8080
+CMD ["java", "-jar", "/work/quarkus-run.jar"]
